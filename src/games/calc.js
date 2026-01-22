@@ -1,14 +1,17 @@
-import readlineSync from 'readline-sync';
+import runGame from '../index.js';
 
-const getRandomNumber = () => Math.floor(Math.random() * 100);
-const getRandomOperator = () => {
-  const operators = ['+', '-', '*'];
-  const index = Math.floor(Math.random() * operators.length);
-  return operators[index];
+const description = '¿Cuál es el resultado de la expresión?';
+
+const getRandomNumber = () => Math.floor(Math.random() * 10) + 1;
+
+const getRandomOperation = () => {
+  const operations = ['+', '-', '*'];
+  const index = Math.floor(Math.random() * operations.length);
+  return operations[index];
 };
 
-const calculate = (a, b, operator) => {
-  switch (operator) {
+const calculate = (a, b, operation) => {
+  switch (operation) {
     case '+':
       return a + b;
     case '-':
@@ -16,37 +19,20 @@ const calculate = (a, b, operator) => {
     case '*':
       return a * b;
     default:
-      return null;
+      throw new Error(`Operación desconocida: ${operation}`);
   }
 };
 
-const runCalcGame = () => {
-  console.log('¡Bienvenido a Brain Games!');
-  const name = readlineSync.question('¿Cuál es tu nombre? ');
-  console.log(`¡Hola, ${name}!`);
-  console.log('¿Cuál es el resultado de la expresión?');
+const generateRound = () => {
+  const a = getRandomNumber();
+  const b = getRandomNumber();
+  const operation = getRandomOperation();
 
-  const roundsCount = 3;
+  const question = `${a} ${operation} ${b}`;
+  const correctAnswer = String(calculate(a, b, operation));
 
-  for (let i = 0; i < roundsCount; i += 1) {
-    const a = getRandomNumber();
-    const b = getRandomNumber();
-    const operator = getRandomOperator();
-
-    console.log(`Pregunta: ${a} ${operator} ${b}`);
-    const answer = readlineSync.question('Tu respuesta: ');
-    const correctAnswer = String(calculate(a, b, operator));
-
-    if (answer !== correctAnswer) {
-      console.log(`'${answer}' es una respuesta incorrecta ;(. La respuesta correcta era '${correctAnswer}'.`);
-      console.log(`¡Intentémoslo de nuevo, ${name}!`);
-      return;
-    }
-
-    console.log('¡Correcto!');
-  }
-
-  console.log(`¡Felicidades, ${name}!`);
+  return [question, correctAnswer];
 };
 
-export default runCalcGame;
+export default () => runGame(description, generateRound);
+
