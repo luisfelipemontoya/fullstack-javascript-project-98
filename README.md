@@ -13,4 +13,7 @@
 [Ver demostración en asciinema](https://asciinema.org/a/LfpJPmjG5xQuxcE0)
 
 ## Demo Brain progression
-[Ver demostración en asscinema](https://asciinema.org/a/MV8LXXoRAQg9LSP6)
+[Ver demostración en assciinema](https://asciinema.org/a/MV8LXXoRAQg9LSP6)
+
+## Demo Brain prime
+[Ver demostración en assciinema](https://asciinema.org/a/73Tw5gzo5RMZGAOB)
