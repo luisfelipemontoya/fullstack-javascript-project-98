@@ -11,3 +11,6 @@
 
 ## Demo Brain Gdc
 [Ver demostración en asciinema](https://asciinema.org/a/LfpJPmjG5xQuxcE0)
+
+## Demo Brain progression
+[Ver demostración en asscinema](https://asciinema.org/a/MV8LXXoRAQg9LSP6)

@@ -1,17 +1,11 @@
-import runGame from '../index.js';
-
 const description = '¿Cuál es el resultado de la expresión?';
 
-const getRandomNumber = () => Math.floor(Math.random() * 10) + 1;
+const getRandomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 
-const getRandomOperation = () => {
-  const operations = ['+', '-', '*'];
-  const index = Math.floor(Math.random() * operations.length);
-  return operations[index];
-};
+const operators = ['+', '-', '*'];
 
-const calculate = (a, b, operation) => {
-  switch (operation) {
+const calculate = (a, b, operator) => {
+  switch (operator) {
     case '+':
       return a + b;
     case '-':
@@ -19,20 +13,22 @@ const calculate = (a, b, operation) => {
     case '*':
       return a * b;
     default:
-      throw new Error(`Operación desconocida: ${operation}`);
+      throw new Error(`Operador desconocido: ${operator}`);
   }
 };
 
 const generateRound = () => {
-  const a = getRandomNumber();
-  const b = getRandomNumber();
-  const operation = getRandomOperation();
+  const num1 = getRandomInt(1, 20);
+  const num2 = getRandomInt(1, 20);
+  const operator = operators[getRandomInt(0, operators.length - 1)];
 
-  const question = `${a} ${operation} ${b}`;
-  const correctAnswer = String(calculate(a, b, operation));
+  const question = `${num1} ${operator} ${num2}`;
+  const correctAnswer = String(calculate(num1, num2, operator));
 
   return [question, correctAnswer];
 };
 
-export default () => runGame(description, generateRound);
-
+export default {
+  description,
+  generateRound,
+};
